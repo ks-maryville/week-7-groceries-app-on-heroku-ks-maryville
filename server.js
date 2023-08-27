@@ -7,7 +7,7 @@ var methodOverride = require('method-override');
 var cors = require('cors');
 
 // Configuration
-mongoose.connect("mongodb://localhost/groceries");
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/groceries");
 
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
@@ -147,5 +147,5 @@ app.delete('/api/groceries/:id', function (req, res) {
 
 
 // Start app and listen on port 8080  
-app.listen(6000);
+app.listen(process.env.PORT || 8080);
 console.log("Grocery server listening on port  - ", (6000));
